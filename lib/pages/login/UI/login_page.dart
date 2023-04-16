@@ -97,23 +97,28 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
       body: SafeArea(
         child: Stack(
           children: [
-            Align(
-              alignment: const AlignmentDirectional(1, -1),
-              child: SvgPicture.asset(
-                "assets/svg/Group317.svg",
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.scaleDown,
-              ),
+            Container(
+              padding: EdgeInsets.zero,
+              child: FractionallySizedBox(
+                  widthFactor: 1.0,
+                  child: Align(
+                      alignment: AlignmentDirectional.topEnd,
+                      child: SvgPicture.asset(
+                        "assets/svg/Group317.svg",
+                        width: MediaQuery.of(context).size.width,
+                        fit: BoxFit.fill,
+                        // height: MediaQuery.of(context).size.height * 0.25,
+                      ))),
             ),
             Align(
-              alignment: const AlignmentDirectional(0, 1),
-              child: SvgPicture.asset(
-                'assets/svg/Group318.svg',
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.25,
-                fit: BoxFit.cover,
-              ),
-            ),
+                alignment: const AlignmentDirectional(0, 1),
+                child: FractionallySizedBox(
+                  widthFactor: 1.0,
+                  child: SvgPicture.asset(
+                    'assets/svg/Group318.svg',
+                    fit: BoxFit.cover,
+                  ),
+                )),
             Align(
               alignment: const AlignmentDirectional(0, 0),
               child: Container(
