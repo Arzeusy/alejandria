@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../shared/widget/button.dart';
 import '../../../shared/widget/divider_text.dart';
-import '../components/login_signup_btn.dart';
 import '../components/social_media_buttons.dart';
 
 /*
@@ -92,7 +91,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       key: scaffoldKey,
       backgroundColor: const Color(0xFF0A2B3B),
       body: SafeArea(
