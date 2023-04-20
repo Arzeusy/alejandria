@@ -1,4 +1,10 @@
+import 'package:alejandria/shared/Components/widget_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:alejandria/shared/function/rive_asset.dart';
+import 'package:rive/rive.dart';
+
+import '../../shared/function/rive_utils.dart';
+import '../../shared/widget/menu_btn.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -18,8 +24,46 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   int _counter = 0;
+
+  // RiveAsset selectedBottomNav = bottomNavs.first;
+
+  late AnimationController _animationController;
+  late Animation<double> animation;
+  late Animation<double> scalAnimation;
+
+  // Let's chnage the name
+  late SMIBool isSideBarClosed;
+
+  bool isSideMenuClosed = true;
+
+  @override
+  void initState() {
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 200),
+    )..addListener(() {
+        setState(() {});
+      });
+
+    animation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+          parent: _animationController, curve: Curves.fastOutSlowIn),
+    );
+    scalAnimation = Tween<double>(begin: 1, end: 0.8).animate(
+      CurvedAnimation(
+          parent: _animationController, curve: Curves.fastOutSlowIn),
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -40,48 +84,85 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        automaticallyImplyLeading: false,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    return MenuWidget(
+        isSideMenuClosed: isSideMenuClosed,
+        animation: animation,
+        scalAnimation: scalAnimation,
+        screen: Scaffold(
+          appBar: AppBar(
+            backgroundColor: const Color(0xFF416788),
+            // Here we take the value from the MyHomePage object that was created by
+            // the App.build method, and use it to set our appbar title.
+            automaticallyImplyLeading: false,
+            title: Center(
+              child: Text(widget.title),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            leading: MenuBtn(
+              riveOnInit: (artboard) {
+                StateMachineController controller = RiveUtils.getRiveController(
+                    artboard,
+                    stateMachineName: "State Machine");
+                isSideBarClosed = controller.findSMI("isOpen") as SMIBool;
+                // Now it's easy to understand
+                isSideBarClosed.value = true;
+              },
+              // Let's fixed the scal animation
+              press: () {
+                isSideBarClosed.value = !isSideBarClosed.value;
+                if (isSideMenuClosed) {
+                  _animationController.forward();
+                } else {
+                  _animationController.reverse();
+                }
+                setState(() {
+                  isSideMenuClosed = isSideBarClosed.value;
+                });
+              },
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+            // actions: [
+            //   IconButton(
+            //     icon: const Icon(Icons.menu),
+            //     onPressed: () {
+            //       // Add your onPressed code here
+            //     },
+            //   ),
+            // ],
+          ),
+          body: Center(
+            // Center is a layout widget. It takes a single child and positions it
+            // in the middle of the parent.
+            child: Column(
+              // Column is also a layout widget. It takes a list of children and
+              // arranges them vertically. By default, it sizes itself to fit its
+              // children horizontally, and tries to be as tall as its parent.
+              //
+              // Invoke "debug painting" (press "p" in the console, choose the
+              // "Toggle Debug Paint" action from the Flutter Inspector in Android
+              // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+              // to see the wireframe for each widget.
+              //
+              // Column has various properties to control how it sizes itself and
+              // how it positions its children. Here we use mainAxisAlignment to
+              // center the children vertically; the main axis here is the vertical
+              // axis because Columns are vertical (the cross axis would be
+              // horizontal).
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                  'You have pushed the button this many times:',
+                ),
+                Text(
+                  '$_counter',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+              ],
+            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: _incrementCounter,
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
+          ), // This trailing comma makes auto-formatting nicer for build methods.
+        ));
   }
 }
