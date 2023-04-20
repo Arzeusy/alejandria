@@ -106,8 +106,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       child: SvgPicture.asset(
                         "assets/svg/Group317.svg",
                         width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.25,
                         fit: BoxFit.fill,
-                        // height: MediaQuery.of(context).size.height * 0.25,
                       ))),
             ),
             Align(

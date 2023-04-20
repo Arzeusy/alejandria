@@ -38,6 +38,7 @@ dependencies:
   flutter_svg: ^2.0.4
   font_awesome_flutter: ^10.4.0
   device_preview: ^1.1.0
+  rive: ^0.10.4
 
 dev_dependencies:
   flutter_test:
@@ -94,6 +95,7 @@ flutter:
 
   assets:
     - assets/svg/
+    - assets/RiveAssets/
 
 flutter_native_splash:
   image: assets/TrueKingdom.png
