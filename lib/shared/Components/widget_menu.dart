@@ -27,7 +27,8 @@ class _MenuWidgetState extends State<MenuWidget> {
       backgroundColor: const Color(0xFF17203A),
       resizeToAvoidBottomInset: false,
       extendBody: true,
-      body: Stack(
+      body: SafeArea(
+          child: Stack(
         children: [
           AnimatedPositioned(
             duration: const Duration(milliseconds: 200),
@@ -55,7 +56,7 @@ class _MenuWidgetState extends State<MenuWidget> {
             ),
           ),
         ],
-      ),
+      )),
     );
   }
 }
