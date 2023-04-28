@@ -89,45 +89,41 @@ class _MyHomePageState extends State<MyHomePage>
         animation: animation,
         scalAnimation: scalAnimation,
         screen: Scaffold(
-          appBar: AppBar(
-            backgroundColor: const Color(0xFF416788),
-            // Here we take the value from the MyHomePage object that was created by
-            // the App.build method, and use it to set our appbar title.
-            automaticallyImplyLeading: false,
-            title: Center(
-              child: Text(widget.title),
-            ),
-            leading: MenuBtn(
-              riveOnInit: (artboard) {
-                StateMachineController controller = RiveUtils.getRiveController(
-                    artboard,
-                    stateMachineName: "State Machine");
-                isSideBarClosed = controller.findSMI("isOpen") as SMIBool;
-                // Now it's easy to understand
-                isSideBarClosed.value = true;
-              },
-              // Let's fixed the scal animation
-              press: () {
-                isSideBarClosed.value = !isSideBarClosed.value;
-                if (isSideMenuClosed) {
-                  _animationController.forward();
-                } else {
-                  _animationController.reverse();
-                }
-                setState(() {
-                  isSideMenuClosed = isSideBarClosed.value;
-                });
-              },
-            ),
-            // actions: [
-            //   IconButton(
-            //     icon: const Icon(Icons.menu),
-            //     onPressed: () {
-            //       // Add your onPressed code here
-            //     },
-            //   ),
-            // ],
-          ),
+          appBar: PreferredSize(
+              preferredSize: const Size.fromHeight(50.0),
+              child: SafeArea(
+                child: AppBar(
+                  backgroundColor: const Color(0xFF416788),
+                  // Here we take the value from the MyHomePage object that was created by
+                  // the App.build method, and use it to set our appbar title.
+                  automaticallyImplyLeading: false,
+                  title: Center(
+                    child: Text(widget.title),
+                  ),
+                  leading: MenuBtn(
+                    riveOnInit: (artboard) {
+                      StateMachineController controller =
+                          RiveUtils.getRiveController(artboard,
+                              stateMachineName: "State Machine");
+                      isSideBarClosed = controller.findSMI("isOpen") as SMIBool;
+                      // Now it's easy to understand
+                      isSideBarClosed.value = true;
+                    },
+                    // Let's fixed the scal animation
+                    press: () {
+                      isSideBarClosed.value = !isSideBarClosed.value;
+                      if (isSideMenuClosed) {
+                        _animationController.forward();
+                      } else {
+                        _animationController.reverse();
+                      }
+                      setState(() {
+                        isSideMenuClosed = isSideBarClosed.value;
+                      });
+                    },
+                  ),
+                ),
+              )),
           body: Center(
             // Center is a layout widget. It takes a single child and positions it
             // in the middle of the parent.

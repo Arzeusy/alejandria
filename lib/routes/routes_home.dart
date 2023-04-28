@@ -7,7 +7,6 @@ import '../shared/function/routes_function.dart';
 class HomeRoutes {
   static final Map<String, WidgetBuilder> _routesMap = {
     '': (context) => const LoginPageWidget(),
-    // 'home': (context) => const SideMenu(),
     'home': (context) => const MyHomePage(
           title: "Home",
         ),
