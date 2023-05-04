@@ -4,23 +4,26 @@ import 'package:flutter/material.dart';
 class TextBoxField extends StatelessWidget {
   String text;
   TextEditingController? model;
+  String? Function(String?)? validator;
   IconData? icon;
   bool obscureTextVal = false;
-  final VoidCallback onPress;
+  VoidCallback? onPress;
 
   TextBoxField(
       {Key? key,
       required this.text,
       this.model,
+      this.validator,
       this.icon,
       required this.obscureTextVal,
-      required this.onPress})
+      this.onPress})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      // controller: _model.textController1,
+      controller: model,
+      validator: validator,
       autofocus: true,
       obscureText: obscureTextVal,
       decoration: InputDecoration(

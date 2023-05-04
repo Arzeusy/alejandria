@@ -1,6 +1,5 @@
 import 'package:alejandria/shared/Components/widget_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:alejandria/shared/function/rive_asset.dart';
 import 'package:rive/rive.dart';
 
 import '../../shared/function/rive_utils.dart';

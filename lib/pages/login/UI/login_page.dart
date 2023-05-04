@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:alejandria/shared/widget/password_field.dart';
 import 'package:alejandria/shared/widget/textbox_field.dart';
 import 'package:flutter/material.dart';
@@ -6,66 +8,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../shared/widget/button.dart';
 import '../../../shared/widget/divider_text.dart';
 import '../components/social_media_buttons.dart';
+import '../model/login_model.dart';
 
-/*
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const WelcomeImage(),
-          Row(
-            children: const [
-              Spacer(),
-              Expanded(
-                flex: 8,
-                child: LoginAndSignupBtn(),
-              ),
-              Spacer(),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class WelcomeImage extends StatelessWidget {
-  const WelcomeImage({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Text(
-          "Hello again! ",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 16.0 * 2),
-        Row(
-          children: [
-            const Spacer(),
-            Expanded(
-              flex: 8,
-              child: SvgPicture.asset(
-                "assets/svg/chat.svg",
-              ),
-            ),
-            const Spacer(),
-          ],
-        ),
-        const SizedBox(height: 16.0 * 2),
-      ],
-    );
-  }
-}
-*/
 class LoginPageWidget extends StatefulWidget {
   const LoginPageWidget({Key? key}) : super(key: key);
 
@@ -76,14 +20,20 @@ class LoginPageWidget extends StatefulWidget {
 class _LoginPageWidgetState extends State<LoginPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
+  final _formKey = GlobalKey<FormState>();
+  late LoginPageModel _model;
 
   @override
   void initState() {
     super.initState();
+    _model = LoginPageModel();
+    _model.userNameField ??= TextEditingController();
+    _model.passwordField ??= TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -122,45 +72,55 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
             Align(
               alignment: const AlignmentDirectional(0, 0),
               child: Container(
-                width: 323,
-                height: 442.9,
-                decoration: const BoxDecoration(
-                  color: Color(0x00FFFFFF),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const Align(
-                      alignment: AlignmentDirectional(-1, 0),
-                      child: Text(
-                        'Hello again!',
-                        style: TextStyle(
-                          color: Colors.white,
-                          // fontFamily: 'Inter',
-                          fontSize: 29,
-                          fontWeight: FontWeight.bold,
+                  width: 323,
+                  height: 442.9,
+                  decoration: const BoxDecoration(
+                    color: Color(0x00FFFFFF),
+                  ),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const Align(
+                          alignment: AlignmentDirectional(-1, 0),
+                          child: Text(
+                            'Hello again!',
+                            style: TextStyle(
+                              color: Colors.white,
+                              // fontFamily: 'Inter',
+                              fontSize: 29,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                      ),
+                        TextBoxField(
+                          text: 'User',
+                          icon: Icons.person,
+                          obscureTextVal: false,
+                          model: _model.userNameField,
+                          validator: LoginPageModel.validateName,
+                        ),
+                        PassWordField(
+                          text: 'Password',
+                          model: _model.passwordField,
+                          validator: LoginPageModel.validatePassword,
+                        ),
+                        Button(
+                          text: 'Login my account',
+                          onPress: () {
+                            if (_formKey.currentState!.validate()) {
+                              Navigator.pushReplacementNamed(context, '/home');
+                            }
+                          },
+                        ),
+                        // const Divider(thickness: 3, color: Colors.white),
+                        const DividerWithText(text: 'OR', dividerThickness: 3),
+                        const SocialMediaButtons()
+                      ],
                     ),
-                    TextBoxField(
-                        text: 'User',
-                        icon: Icons.person,
-                        obscureTextVal: false,
-                        onPress: () {}),
-                    PassWordField(text: 'Password'),
-                    Button(
-                      text: 'Login my account',
-                      onPress: () {
-                        Navigator.pushReplacementNamed(context, '/home');
-                      },
-                    ),
-                    // const Divider(thickness: 3, color: Colors.white),
-                    const DividerWithText(text: 'OR', dividerThickness: 3),
-                    const SocialMediaButtons()
-                  ],
-                ),
-              ),
+                  )),
             ),
           ],
         ),
