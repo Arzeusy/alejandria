@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "869005261360",
+    "project_id": "alejandriaapp",
+    "storage_bucket": "alejandriaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869005261360:android:73cb434d6da548f6d80bf5",
+        "android_client_info": {
+          "package_name": "com.example.alejandria"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869005261360-et7rnv3tv9nq0d04oqvje8sfukrr5148.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkhOBKk316G24Oi4vhM2MRbAGDVX1mT8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869005261360-ciov9n3jg8ecap80610lm42r7ifgr27s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

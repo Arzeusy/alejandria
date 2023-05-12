@@ -9,6 +9,7 @@ import '../../../shared/widget/button.dart';
 import '../../../shared/widget/divider_text.dart';
 import '../components/social_media_buttons.dart';
 import '../model/login_model.dart';
+import '../repository/firebase_auth.dart';
 
 class LoginPageWidget extends StatefulWidget {
   const LoginPageWidget({Key? key}) : super(key: key);
@@ -36,6 +37,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     _model.dispose();
     _unfocusNode.dispose();
     super.dispose();
+  }
+
+  handleSubmit() async {
+    if (!_formKey.currentState!.validate()) return;
+
+    await Auth().signInWithEmail(_model.toJson());
+    // ignore: use_build_context_synchronously
+    Navigator.pushReplacementNamed(context, '/home');
   }
 
   @override
@@ -111,7 +120,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           text: 'Login my account',
                           onPress: () {
                             if (_formKey.currentState!.validate()) {
-                              Navigator.pushReplacementNamed(context, '/home');
+                              handleSubmit();
                             }
                           },
                         ),
