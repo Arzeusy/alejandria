@@ -24,7 +24,7 @@ class TextBoxField extends StatelessWidget {
     return TextFormField(
       controller: model,
       validator: validator,
-      autofocus: true,
+      autofocus: false,
       obscureText: obscureTextVal,
       decoration: InputDecoration(
           labelText: text,

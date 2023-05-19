@@ -5,20 +5,21 @@ import 'package:alejandria/shared/widget/textbox_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../shared/widget/button.dart';
-import '../../../shared/widget/divider_text.dart';
-import '../components/social_media_buttons.dart';
-import '../model/login_model.dart';
-import '../repository/firebase_auth.dart';
+import '../../../../shared/widget/button.dart';
+import '../../../../shared/widget/divider_text.dart';
+import '../../components/signup_text.dart';
+import '../../components/social_media_buttons.dart';
+import '../../model/login_model.dart';
+import '../../repository/firebase_auth.dart';
 
-class LoginPageWidget extends StatefulWidget {
-  const LoginPageWidget({Key? key}) : super(key: key);
+class SignUpPageWidget extends StatefulWidget {
+  const SignUpPageWidget({Key? key}) : super(key: key);
 
   @override
-  State<LoginPageWidget> createState() => _LoginPageWidgetState();
+  State<SignUpPageWidget> createState() => _SignUpPageWidgetState();
 }
 
-class _LoginPageWidgetState extends State<LoginPageWidget> {
+class _SignUpPageWidgetState extends State<SignUpPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
   final _formKey = GlobalKey<FormState>();
@@ -42,7 +43,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   handleSubmit() async {
     if (!_formKey.currentState!.validate()) return;
 
-    await Auth().signInWithEmail(_model.toJson());
+    await Auth().registerWithEmail(_model.toJson());
     // ignore: use_build_context_synchronously
     Navigator.pushReplacementNamed(context, '/home');
   }
@@ -95,7 +96,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         const Align(
                           alignment: AlignmentDirectional(-1, 0),
                           child: Text(
-                            'Hello again!',
+                            'Welcome! start your journey with us.',
                             style: TextStyle(
                               color: Colors.white,
                               // fontFamily: 'Inter',
@@ -117,7 +118,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           validator: LoginPageModel.validatePassword,
                         ),
                         Button(
-                          text: 'Login my account',
+                          text: 'Sing up',
                           onPress: () {
                             if (_formKey.currentState!.validate()) {
                               handleSubmit();
@@ -126,7 +127,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         ),
                         // const Divider(thickness: 3, color: Colors.white),
                         const DividerWithText(text: 'OR', dividerThickness: 3),
-                        const SocialMediaButtons()
+                        const SocialMediaButtons(),
+                        SignupTextBtn(
+                          text: "Alredy have an account? ",
+                          boldText: "Sign in",
+                          onPress: () =>
+                              {Navigator.pushReplacementNamed(context, '/')},
+                        )
                       ],
                     ),
                   )),
