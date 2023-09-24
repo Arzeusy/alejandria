@@ -75,6 +75,18 @@ class _MyHomePageState extends State<MyHomePage>
     });
   }
 
+  void clickMenu(){
+    isSideBarClosed.value = !isSideBarClosed.value;
+    if (isSideMenuClosed) {
+      _animationController.forward();
+    } else {
+      _animationController.reverse();
+    }
+    setState(() {
+      isSideMenuClosed = isSideBarClosed.value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -87,6 +99,7 @@ class _MyHomePageState extends State<MyHomePage>
         isSideMenuClosed: isSideMenuClosed,
         animation: animation,
         scalAnimation: scalAnimation,
+        press: clickMenu,
         screen: Scaffold(
           appBar: AppBar(
             backgroundColor: const Color(0xFF416788),
@@ -106,17 +119,7 @@ class _MyHomePageState extends State<MyHomePage>
                 isSideBarClosed.value = true;
               },
               // Let's fixed the scal animation
-              press: () {
-                isSideBarClosed.value = !isSideBarClosed.value;
-                if (isSideMenuClosed) {
-                  _animationController.forward();
-                } else {
-                  _animationController.reverse();
-                }
-                setState(() {
-                  isSideMenuClosed = isSideBarClosed.value;
-                });
-              },
+              press: clickMenu,
             ),
             // actions: [
             //   IconButton(
