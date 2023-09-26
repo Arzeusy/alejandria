@@ -42,7 +42,7 @@ class GradienBack extends StatelessWidget {
               width: screenHeight,
               height: screenHeight,
               decoration: BoxDecoration(
-                color: const Color.fromRGBO(0, 0, 0, 0.05),
+                color: const Color.fromRGBO(0, 0, 0, 0.03),
                 borderRadius: BorderRadius.circular(screenHeight / 2),
               ),
             ),
