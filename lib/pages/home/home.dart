@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage>
     });
   }
 
-  void clickMenu(){
+  void clickMenu() {
     isSideBarClosed.value = !isSideBarClosed.value;
     if (isSideMenuClosed) {
       _animationController.forward();
