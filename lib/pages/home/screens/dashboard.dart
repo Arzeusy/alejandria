@@ -1,3 +1,6 @@
+import 'package:alejandria/pages/home/widget/task_list.dart';
+import 'package:alejandria/shared/widget/section.dart';
+import 'package:alejandria/shared/widget/task_card.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
@@ -80,7 +83,8 @@ class _DashBoardPageState extends State<DashBoardPage>
       scalAnimation: scalAnimation,
       press: clickMenu,
       screen: Scaffold(
-          body: Column(
+          body: SingleChildScrollView(
+              child: Column(
         children: [
           DashboardAppbar(
             backgroundColor: const Color(0xFF416788),
@@ -89,8 +93,46 @@ class _DashBoardPageState extends State<DashBoardPage>
               press: clickMenu,
             ),
           ),
+          Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                padding: const EdgeInsets.only(top: 10.0, left: 15.0),
+                child: Text(
+                  "Hi, Arzeusy!",
+                  style: TextStyle(
+                      color: Colors.grey[500],
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold),
+                ),
+              )),
+          SectionWidget(
+            titleSection: "Continue course",
+            component: TaskCard(
+                backgroundColor: const Color(0xFFADD8E6),
+                textColor: const Color(0xFF416788),
+                title: "Grammar",
+                description: "Tarea de gramatica",
+                progress: 0.85,
+                progressText: "3/7",
+                onPressed: () {}),
+          ),
+          SectionWidget(
+            titleSection: "Grammar Quiz",
+            component: TaskCard(
+                backgroundColor: const Color(0xFF416788),
+                textColor: const Color(0xFFADD8E6),
+                title: "1 Grammar",
+                description: "Tarea de gramatica",
+                progress: 0.85,
+                progressText: "3/7",
+                onPressed: () {}),
+          ),
+          const SectionWidget(
+            titleSection: "Your tasks for today",
+            component: TaskList(),
+          ),
         ],
-      )),
+      ))),
     );
   }
 }
