@@ -9,4 +9,25 @@ class Utils {
       255 - color.blue,
     );
   }
+
+  static String getDayInitial(int dayOfWeek) {
+    switch (dayOfWeek) {
+      case DateTime.monday:
+        return 'M';
+      case DateTime.tuesday:
+        return 'T';
+      case DateTime.wednesday:
+        return 'W';
+      case DateTime.thursday:
+        return 'T';
+      case DateTime.friday:
+        return 'F';
+      case DateTime.saturday:
+        return 'S';
+      case DateTime.sunday:
+        return 'S';
+      default:
+        return '';
+    }
+  }
 }

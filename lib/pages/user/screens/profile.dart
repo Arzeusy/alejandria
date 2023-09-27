@@ -1,5 +1,5 @@
-import 'package:alejandria/shared/widget/task_card.dart';
 import 'package:flutter/material.dart';
+import 'package:alejandria/shared/widget/task_card.dart';
 
 import '../../../shared/widget/achievement.dart';
 import '../widget/head_profile.dart';
