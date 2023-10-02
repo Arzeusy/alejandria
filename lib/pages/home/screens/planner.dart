@@ -20,36 +20,62 @@ class _PlannerPageState extends State<PlannerPage>
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            backgroundColor: Color(0xFF416788),
             body: SingleChildScrollView(
                 child: Column(children: [
-      Container(
-          padding: const EdgeInsets.only(top: 30.0, right: 20.0, left: 5.0),
-          color: const Color(0xFF416788),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    color: Colors.white,
-                  ),
-                  Text(
-                    formattedDate,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
+              Container(
+                  padding:
+                      const EdgeInsets.only(top: 30.0, right: 20.0, left: 5.0),
+                  color: const Color(0xFF416788),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.arrow_back),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            color: Colors.white,
+                          ),
+                          Text(
+                            formattedDate,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )),
+              const SizedBox(
+                height: 20.0,
               ),
-            ],
-          )),
-      const PrioritySecction()
-    ]))));
+              const Text(
+                "Every Day Your",
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: TextStyle(
+                    fontSize: 45.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                "Task Plan",
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: TextStyle(
+                    fontSize: 45.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              const PrioritySecction()
+            ]))));
   }
 }

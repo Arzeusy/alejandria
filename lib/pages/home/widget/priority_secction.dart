@@ -4,37 +4,39 @@ import 'package:flutter/material.dart';
 
 class PrioritySecction extends StatelessWidget {
   const PrioritySecction({Key? key}) : super(key: key);
-
+// MediaQuery.of(context).size.width,
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         width: double.infinity,
-        padding: const EdgeInsets.all(10.0),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
+            const Expanded(
                 flex: 1,
                 child: PriorityCard(
-                    icon: CupertinoIcons.add_circled_solid,
+                    icon: CupertinoIcons.star_fill,
+                    height: 250.0,
                     title: "First Priority",
                     subtitle: '10 task',
-                    backgroundColor: Colors.green[200] ?? Colors.white)),
+                    backgroundColor: Color(0xFFADD8E6))),
             Expanded(
                 flex: 1,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: const [
                     PriorityCard(
-                        icon: CupertinoIcons.add_circled_solid,
+                        icon: CupertinoIcons.star_lefthalf_fill,
                         title: "Second Priority",
+                        height: 115.0,
                         subtitle: '10 task',
-                        backgroundColor: Color(0xFF2AC9E7)),
+                        backgroundColor: Color(0xFFC0E0E6)),
                     PriorityCard(
-                        icon: CupertinoIcons.add_circled_solid,
+                        icon: CupertinoIcons.star,
                         title: "Third Priority",
+                        height: 115.0,
                         subtitle: '10 task',
-                        backgroundColor: Color(0xffCBBFD7)),
+                        backgroundColor: Color(0xFF6B9FBD)),
                   ],
                 ))
           ],
