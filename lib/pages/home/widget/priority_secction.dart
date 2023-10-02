@@ -1,6 +1,5 @@
 import 'package:alejandria/pages/home/widget/priority_card.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class PrioritySecction extends StatelessWidget {
   const PrioritySecction({Key? key}) : super(key: key);

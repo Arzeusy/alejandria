@@ -1,4 +1,5 @@
 import 'package:alejandria/pages/home/widget/priority_secction.dart';
+import 'package:alejandria/pages/home/widget/schedule_task.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
@@ -20,7 +21,7 @@ class _PlannerPageState extends State<PlannerPage>
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            backgroundColor: Color(0xFF416788),
+            backgroundColor: const Color(0xFF416788),
             body: SingleChildScrollView(
                 child: Column(children: [
               Container(
@@ -75,7 +76,15 @@ class _PlannerPageState extends State<PlannerPage>
               const SizedBox(
                 height: 20.0,
               ),
-              const PrioritySecction()
+              const PrioritySecction(),
+              const SizedBox(
+                height: 20.0,
+              ),
+              const ScheduleTask(),
+              const ScheduleTask(),
+              const ScheduleTask(),
+              const ScheduleTask(),
+              const ScheduleTask(),
             ]))));
   }
 }

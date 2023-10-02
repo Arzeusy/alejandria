@@ -127,16 +127,12 @@ class CustomClipperShape extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     final path = Path();
-    path.moveTo(size.width, 0); // Mueve el punto de inicio al origen
-    path.lineTo(size.width, size.height); // Línea horizontal hacia la derecha
-    path.lineTo(
-        0, size.height); // Línea vertical hacia abajo (corta la esquina)
-    path.lineTo(
-        0,
-        size.width /
-            4); // Línea horizontal hacia la izquierda (corta la esquina)
+    path.moveTo(size.width, 0);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.lineTo(0, size.width / 4);
     path.lineTo(size.width / 4, 0);
-    path.close(); // Cierra el camino
+    path.close();
     return path;
   }
 
