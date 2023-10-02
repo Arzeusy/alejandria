@@ -35,6 +35,13 @@ class _LinearCalendarState extends State<LinearCalendar> {
     );
   }
 
+  void goToPlanner(DateTime day) {
+    DateTime currentDate = DateTime.now();
+    if (day.isAfter(currentDate)) {
+      Navigator.pushNamed(context, '/planner');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     scrollToCurrentDay();
@@ -66,26 +73,31 @@ class _LinearCalendarState extends State<LinearCalendar> {
                   fontSize: 15.0,
                   fontWeight: FontWeight.bold),
             ),
-            Container(
-                width: 35,
-                padding: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  color: isCurrentDay
-                      ? const Color(0xFFADD8E6)
-                      : Colors.transparent,
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                child: Center(
-                  child: Text(
-                    day.day.toString(),
-                    style: TextStyle(
-                      color: !isCurrentDay
-                          ? Colors.white.withOpacity(isCurrentMonth ? 1 : 0.5)
-                          : const Color(0xff0A2B3B),
-                      fontWeight: FontWeight.bold,
-                    ),
+            InkWell(
+              onTap: () {
+                goToPlanner(day);
+              },
+              child: Container(
+                  width: 35,
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    color: isCurrentDay
+                        ? const Color(0xFFADD8E6)
+                        : Colors.transparent,
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
-                )),
+                  child: Center(
+                    child: Text(
+                      day.day.toString(),
+                      style: TextStyle(
+                        color: !isCurrentDay
+                            ? Colors.white.withOpacity(isCurrentMonth ? 1 : 0.5)
+                            : const Color(0xff0A2B3B),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )),
+            ),
           ],
         ),
       ));
