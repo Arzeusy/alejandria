@@ -7,10 +7,13 @@ class PassWordField extends StatefulWidget {
   final IconData noViewData = Icons.visibility_outlined;
   final IconData viewData = Icons.visibility_off_outlined;
   TextEditingController? model;
+  String? Function(String?)? validator;
   String text;
 
   PassWordField({
     Key? key,
+    this.model,
+    this.validator,
     required this.text,
   }) : super(key: key);
 
@@ -34,6 +37,7 @@ class _PassWordFieldState extends State<PassWordField> {
     return TextBoxField(
       text: widget.text,
       model: widget.model,
+      validator: widget.validator,
       icon: favState ? widget.noViewData : widget.viewData,
       obscureTextVal: favState ? false : true,
       onPress: onPressedFav,

@@ -1,6 +1,7 @@
 import 'package:alejandria/shared/widget/icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../repository/firebase_auth.dart';
 
 // ignore: must_be_immutable
 class SocialMediaButtons extends StatefulWidget {
@@ -23,6 +24,12 @@ class _SocialMediaButtonsState extends State<SocialMediaButtons> {
     });
   }
 
+  handleSubmit() async {
+    await Auth().signInWithGoogle();
+    // ignore: use_build_context_synchronously
+    Navigator.pushReplacementNamed(context, '/home');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -37,7 +44,9 @@ class _SocialMediaButtonsState extends State<SocialMediaButtons> {
         IconButtonWidget(
             colorValue: Colors.white,
             icon: FontAwesomeIcons.google,
-            onPress: () {}),
+            onPress: () {
+              handleSubmit();
+            }),
         IconButtonWidget(
             colorValue: Colors.white,
             icon: FontAwesomeIcons.apple,

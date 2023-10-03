@@ -9,7 +9,13 @@ import 'package:rive/rive.dart';
 // import 'package:rive_animation/utils/rive_utils.dart';
 
 class SideMenu extends StatefulWidget {
-  const SideMenu({Key? key}) : super(key: key);
+  const SideMenu({
+    Key? key,
+    required this.press
+  }) : super(key: key);
+
+  final VoidCallback press;
+
   @override
   State<SideMenu> createState() => _StateSideMenu();
 }
@@ -31,9 +37,10 @@ class _StateSideMenu extends State<SideMenu> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const InfoCard(
+              InfoCard(
                 title: 'Yeicob Calderon',
-                subTitle: '@arzeusy',
+                press: widget.press,
+                subTitle: '@arzeusy'
               ),
               Padding(
                 padding:

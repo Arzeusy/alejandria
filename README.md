@@ -1,16 +1,39 @@
-# alejandria
+# Alejandria
 
-A new Flutter project.
+Is a application of greek accient language where the users can practice words, sentences by modules of the bible new testament
 
-## Getting Started
+## Installation
 
-This project is a starting point for a Flutter application.
+This project is a Flutter application with
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter 3.7.5
+- Dart SDK 2.19.2
+- FVM 2.4.1
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+create the alias in your enviroment file:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+ nano ~/.zshrc:
+```
+
+Next, add the alias thad you need in you console.
+
+```bash
+alias f="fvm flutter"
+alias d="fvm dart"
+```
+
+then you can execute in your emulators the flutter application
+
+```bash
+f emulators --launch Pixel_2_API_28
+f run --no-sound-null-safety
+```
+
+## Authors
+
+- [@Arzeusy](https://github.com/Arzeusy)
+
+## Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
