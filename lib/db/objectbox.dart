@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import '../pages/login/model/user_model.dart';
 import '../objectbox.g.dart';
 
-class ObjectBox {
+class ObjectBoxManager {
   late final Store store;
 
   late final Box<User> userBox;
   late final Box<Profile> profileBox;
 
-  ObjectBox._create(this.store) {
+  ObjectBoxManager._create(this.store) {
     userBox = Box<User>(store);
     profileBox = Box<Profile>(store);
 
@@ -22,9 +22,9 @@ class ObjectBox {
     //initial Data
   }
 
-  static Future<ObjectBox> create() async {
+  static Future<ObjectBoxManager> create() async {
     final store = await openStore();
-    return ObjectBox._create(store);
+    return ObjectBoxManager._create(store);
   }
 
   int addUser(String? userName, String email, String authToken, String picture,

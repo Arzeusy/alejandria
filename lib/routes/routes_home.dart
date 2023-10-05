@@ -3,6 +3,7 @@ import 'package:alejandria/pages/home/screens/planner.dart';
 import 'package:alejandria/pages/login/UI/screens/login_page.dart';
 import 'package:alejandria/pages/login/UI/screens/signup_page.dart';
 import 'package:flutter/material.dart';
+import '../db/objectbox.dart';
 import '../pages/home/home.dart';
 // import '../shared/Components/side_menu.dart';
 import '../shared/function/routes_function.dart';
@@ -19,8 +20,12 @@ class HomeRoutes {
   };
 
   static const String _prefix = '/';
+  static late ObjectBoxManager obm;
 
-  static Map<String, WidgetBuilder> getRoutes() {
+  static Map<String, WidgetBuilder> getRoutes(
+      ObjectBoxManager objectBoxManager) {
+    obm = objectBoxManager;
+
     return addPrefixToRoutes(_routesMap, _prefix);
   }
 }

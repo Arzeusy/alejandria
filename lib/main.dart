@@ -6,20 +6,24 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-late ObjectBox objectBox;
+late ObjectBoxManager objectBox;
 
 void main() async {
   // keep splash screen until initializationhas completed!
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  objectBox = await ObjectBox.create();
+  objectBox = await ObjectBoxManager.create();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(MyApp(
+    boxManager: objectBox,
+  ));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  final ObjectBoxManager boxManager;
+
+  const MyApp({Key? key, required this.boxManager}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();

@@ -1,13 +1,15 @@
+import 'package:alejandria/db/objectbox.dart';
 import 'package:flutter/material.dart';
 import 'package:alejandria/shared/widget/task_card.dart';
 
 import '../../../shared/widget/achievement.dart';
+import '../../login/model/user_model.dart';
 import '../widget/head_profile.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({
-    Key? key,
-  }) : super(key: key);
+  final ObjectBoxManager obm;
+
+  const ProfilePage({Key? key, required this.obm}) : super(key: key);
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -15,8 +17,21 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage>
     with SingleTickerProviderStateMixin {
+  // Función para imprimir el contenido del stream
+  void printUserStream(Stream<List<User>> userStream) {
+    userStream.listen((users) {
+      print('Contenido del stream de usuarios:');
+      for (var user in users) {
+        print('Nombre de usuario: ${user.userName}, Email: ${user.email}');
+        // Puedes imprimir otros detalles del usuario según sea necesario
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    print("widget.obm-------------------------------------------");
+    printUserStream(widget.obm.listUsers());
     return Scaffold(
         body: Column(
       children: [
